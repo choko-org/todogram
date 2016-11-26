@@ -1,0 +1,43 @@
+version: '2'
+
+services:
+  source:
+    image: busybox
+    container_name: todogram-src
+    volumes:
+      - $PWD:/todogram/app
+
+  database:
+    image: mongo:3.2
+    hostname: database
+    container_name: todogram-db
+    volumes_from:
+      - source
+    ports:
+      - "27017:27017"
+
+  app:
+    image: todogram
+    build:
+      context: ./docker/
+      args:
+        USER_ID: "$USER_ID"
+        GROUP_ID: "$GROUP_ID"
+    cap_add:
+      - ALL
+    hostname: app
+    working_dir: /todogram/app
+    container_name: todogram-app
+    environment:
+      - TZ=$TZ
+      - NODE_ENV=development
+    links:
+      - database:database-host
+    volumes_from:
+      - source
+    volumes:
+      - $HOME/.ssh:/todogram/.ssh
+      - $HOME/.gitconfig:/todogram/.gitconfig
+    ports:
+      - "3000:3000"
+      - "3001:3001"
