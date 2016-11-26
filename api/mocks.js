@@ -5,13 +5,16 @@ export default {
   String: () => casual.string,
   User: () => ({
     name: casual.name,
-    email: casual.email,
-    bio: casual.text,
   }),
-  Post: () => ({
-    body: casual.sentences(10),
+  TodoItem: () => ({
+    text: casual.text,
+    completed: casual.boolean,
+  }),
+  TodoList: () => ({
+    text: casual.text,
+    author: casual.name,
   }),
   RootQuery: () => ({
-    posts: (o, { numPages=1 }) => new MockList(numPages * 5)
+    todoList: (o, { id, numPages=1 }) => new MockList(numPages * 10)
   })
 }

@@ -1,20 +1,28 @@
 type User {
-  slug: String!
+  id: ID!
   name: String!
 }
 
-type Post {
+type TodoList {
   id: ID!
-  title: String!
-  body: String
+  text: String!
   author: User
+  items: [TodoItem]
   coverImage: String
-  link: String
   created: String
+  modified: String
+}
+
+type TodoItem {
+  id: ID!
+  text: String!
+  completed: Boolean
+  created: String
+  modified: String
 }
 
 type RootQuery {
-  posts(userSlug: String!, numPages: Int): [Post]
+  todoList(id: ID!): [TodoList]
 }
 
 schema {
