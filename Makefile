@@ -20,8 +20,8 @@ in:
 # test:
 # 	docker-compose run --service-ports --rm app scripts/test.sh
 #
-# database:
-# 	docker exec -it fiesc-vs-db
+database:
+	docker exec -it todogram-db mongo
 
 stop:
 	docker-compose stop

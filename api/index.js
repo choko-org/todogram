@@ -2,7 +2,7 @@ import apiServer from 'saturn-framework/api';
 
 import { apolloExpress, graphiqlExpress  } from 'apollo-server';
 
-import schema from './schema.graphql'
+import schema from './schema4.graphql'
 import resolvers from './resolvers'
 import mocks from './mocks';
 
@@ -15,11 +15,11 @@ const executableSchema = makeExecutableSchema({
   resolvers,
 });
 
-addMockFunctionsToSchema({
-  schema: executableSchema,
-  resolvers,
-  mocks,
-});
+// addMockFunctionsToSchema({
+//   schema: executableSchema,
+//   resolvers,
+//   mocks,
+// });
 
 apiServer.use('/graphql', bodyParser.json(), apolloExpress({
   schema: executableSchema,

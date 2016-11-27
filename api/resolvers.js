@@ -1,11 +1,12 @@
-import { getPostsByUserSlug } from './connectors'
+import { addTodoList, getTodoListById, getTodoLists } from './connectors'
 
 const resolverMap = {
   RootQuery: {
-    todoList(root, args, context) {
-      const { userSlug } = args
-      return []
-    }
+    todoLists: (root, {}, context) => getTodoLists(),
+    todoList: (root, { id }, context) => getTodoListById(id),
+  },
+  Mutation: {
+    addTodoList: (root, { list }, context) => addTodoList(list),
   }
 }
 

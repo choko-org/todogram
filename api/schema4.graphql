@@ -1,0 +1,56 @@
+type User {
+  id: ID!
+  name: String!
+}
+
+type TodoList {
+  id: ID!
+  text: String!
+  author: User
+  items: [TodoItem]
+  coverImage: String
+  created: String
+  modified: String
+}
+
+type TodoItem {
+  id: ID!
+  text: String!
+  completed: Boolean
+  created: String
+  modified: String
+}
+
+input UserInput {
+  name: String!
+}
+
+input TodoItemInput {
+  text: String!
+  completed: Boolean
+  created: String
+  modified: String
+}
+
+input TodoListInput {
+  text: String!
+  author: UserInput
+  items: [TodoItemInput]
+  coverImage: String
+  created: String
+  modified: String
+}
+
+type RootQuery {
+  todoList(id: ID!): TodoList
+  todoLists: [TodoList]
+}
+
+type Mutation {
+  addTodoList(list: TodoListInput): TodoList
+}
+
+schema {
+  query: RootQuery
+  mutation: Mutation
+}

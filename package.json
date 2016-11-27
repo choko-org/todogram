@@ -2,7 +2,7 @@
   "name": "todogram",
   "private": true,
   "scripts": {
-    "dev": "saturn dev",
+    "dev": "BABEL_DISABLE_CACHE=1 saturn dev",
     "prestart": "saturn build",
     "start": "saturn start",
     "test": "saturn test"
@@ -16,10 +16,12 @@
     "graphql": "^0.6.1",
     "graphql-tag": "^0.1.9",
     "graphql-tools": "^0.8.0",
+    "mongoose": "^4.7.0",
     "react": "^15.0.2",
     "react-apollo": "^0.5.16",
     "react-router": "^2.4.1",
-    "saturn-framework": "^0.2.6"
+    "saturn-framework": "^0.2.6",
+    "semantic-ui-react": "^0.61.5"
   },
   "saturn": {
     "app-client": "./ui",

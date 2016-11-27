@@ -1,7 +1,12 @@
-import { parse } from 'feed-reader'
+import database, { Schema } from './database'
+import { TodoList } from './models'
 
-export function getPostsByUserSlug (slug) {
-  const url = `http://blog.taller.net.br/author/${slug}/feed/`
+const { ObjectId } = Schema.Types
 
-  return parse(url).then(feed => feed.entries)
+export const getTodoListById = id => TodoList.findById(id)
+export const getTodoLists = () => TodoList.find()
+
+export const addTodoList = list => {
+  const newTodo = new TodoList(list).save().catch(e => console.log(e))
+  return newTodo
 }
